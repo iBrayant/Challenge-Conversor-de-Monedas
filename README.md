@@ -1,6 +1,6 @@
-# Conversor de Monedas
+# Conversor de Monedas - Challenge ONE Back End
 
-Este es un conversor de monedas desarrollado en Java que permite realizar conversiones entre diferentes divisas utilizando tasas de cambio en tiempo real.
+Este es un conversor de monedas desarrollado en Java que permite realizar conversiones entre diferentes divisas utilizando tasas de cambio en tiempo real a través de la API de ExchangeRate. El proyecto forma parte del Challenge ONE Back End de Alura Latam.
 
 ## Requisitos Previos
 
@@ -63,4 +63,4 @@ mvn exec:java
 - Java 11
 - Maven
 - Gson (para manejo de JSON)
-- API de ExchangeRate 
+- API de ExchangeRate
