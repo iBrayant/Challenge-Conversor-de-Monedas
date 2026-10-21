@@ -1,66 +1,83 @@
-# Conversor de Monedas - Challenge ONE Back End
+# Conversor de Monedas
 
-Este es un conversor de monedas desarrollado en Java que permite realizar conversiones entre diferentes divisas utilizando tasas de cambio en tiempo real a través de la API de ExchangeRate. El proyecto forma parte del Challenge ONE Back End de Alura Latam.
+![Java](https://img.shields.io/badge/Java-11+-ED8B00?logo=openjdk&logoColor=white)
+![Maven](https://img.shields.io/badge/Maven-C71A36?logo=apachemaven&logoColor=white)
+![Gson](https://img.shields.io/badge/Gson-2.10.1-4285F4)
+![Licencia](https://img.shields.io/badge/licencia-MIT-green)
 
-## Requisitos Previos
+Aplicación de consola en Java que convierte cantidades entre monedas con tasas de cambio actualizadas, consultadas a la API de [ExchangeRate-API](https://www.exchangerate-api.com/).
 
-- Java JDK 11 o superior
-- Maven 3.6 o superior
+> Challenge **Conversor de Monedas** del programa Oracle Next Education (Alura Latam), Back-end.
 
-## Instalación
-
-1. Clona el repositorio:
-```bash
-git clone [URL_DEL_REPOSITORIO]
-cd conversor-monedas
-```
-
-2. Compila el proyecto:
-```bash
-mvn clean package
-```
-
-## Ejecución
-
-Hay dos formas de ejecutar la aplicación:
-
-### Usando el archivo JAR
-
-```bash
-java -jar target/conversor-monedas-1.0-SNAPSHOT.jar
-```
-
-### Usando Maven
-
-```bash
-mvn exec:java
-```
-
-## Uso
-
-1. Al iniciar la aplicación, se mostrará un menú con las siguientes opciones:
-   - 1: Realizar conversión
-   - 0: Salir
-
-2. Para realizar una conversión:
-   - Seleccione la opción 1
-   - Ingrese la cantidad a convertir
-   - Seleccione la moneda de origen
-   - Seleccione la moneda de destino
-   - El programa mostrará el resultado de la conversión
-
-3. Para salir del programa, seleccione la opción 0
+<!-- TODO: captura de la consola (guardar en docs/img/) -->
+<!-- ![Consola](docs/img/consola.png) -->
 
 ## Características
 
-- Interfaz de línea de comandos fácil de usar
-- Conversiones en tiempo real
-- Soporte para múltiples monedas
-- Utiliza la API de ExchangeRate para obtener tasas de cambio actualizadas
+- **Conversión entre cualquier par de monedas** que soporte la API (más de 160): escribes el código de origen, el de destino y la cantidad.
+- **Listado de monedas disponibles**, ordenado alfabéticamente.
+- **Tasas en tiempo real:** cada conversión consulta las tasas de la moneda de origen.
+- **Validación de la entrada:** rechaza opciones no numéricas, cantidades negativas o inválidas, y monedas vacías o no soportadas.
+- Cliente HTTP nativo (`java.net.http`) y Gson para leer la respuesta.
 
-## Tecnologías Utilizadas
+## Stack
 
-- Java 11
-- Maven
-- Gson (para manejo de JSON)
-- API de ExchangeRate
+Java 11 · Maven · Gson · `java.net.http.HttpClient` · ExchangeRate-API
+
+## Estructura
+
+```
+src/main/java/com/conversor/
+├── Main.java                     -> menú de consola
+├── service/ConversorService      -> consulta a la API y cálculo de la conversión
+└── model/ExchangeRateResponse    -> respuesta de la API
+```
+
+## Cómo correrlo
+
+Requisitos: Java 11+ y Maven.
+
+1. Obtén una clave gratuita en [exchangerate-api.com](https://www.exchangerate-api.com/) y defínela como variable de entorno. La aplicación no arranca sin ella:
+
+   ```bash
+   export EXCHANGERATE_API_KEY="tu_clave"
+   ```
+
+2. Ejecuta:
+
+   ```bash
+   mvn exec:java
+   ```
+
+   O genera el JAR ejecutable y córrelo:
+
+   ```bash
+   mvn clean package
+   java -jar target/conversor-monedas-1.0-SNAPSHOT.jar
+   ```
+
+## Uso
+
+```
+=== Conversor de Monedas ===
+1. Realizar conversión
+2. Ver monedas disponibles
+0. Salir
+```
+
+Ejemplo de conversión:
+
+```
+Ingrese la moneda de origen (ejemplo: USD): USD
+Ingrese la moneda de destino (ejemplo: EUR): COP
+Ingrese la cantidad a convertir: 100
+100.00 USD = 400000.00 COP
+```
+
+(El resultado depende de la tasa del momento.)
+
+## Autor
+
+**Brayant Vásquez Gómez** · [GitHub](https://github.com/iBrayant) · [LinkedIn](https://linkedin.com/in/brayant-vásquez-gómez)
+
+Licencia [MIT](LICENSE).

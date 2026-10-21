@@ -1,0 +1,12 @@
+# Maven
+target/
+dependency-reduced-pom.xml
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Entorno
+.env
+*.log

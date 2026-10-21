@@ -6,11 +6,16 @@ import java.util.Set;
 import java.util.InputMismatchException;
 
 public class Main {
-    private static final String API_KEY = "7383ba13c7e8e0bdfcec3912";
+    private static final String API_KEY = System.getenv("EXCHANGERATE_API_KEY");
     private static final Scanner scanner = new Scanner(System.in);
     private static final ConversorService conversor = new ConversorService(API_KEY);
 
     public static void main(String[] args) {
+        if (API_KEY == null || API_KEY.isBlank()) {
+            System.err.println("Falta la variable de entorno EXCHANGERATE_API_KEY con tu clave de exchangerate-api.com.");
+            System.exit(1);
+        }
+
         while (true) {
             try {
                 mostrarMenu();
